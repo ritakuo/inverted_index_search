@@ -20,16 +20,17 @@ public class InvertedIndexMapper extends Mapper<LongWritable, Text, Text, Text> 
     //read the ignoreWord.txt from filesystem
     protected void setup(Context context) throws IOException {
         Configuration conf = context.getConfiguration();
+        if(conf.get("filePath") != null){
+            Path pt = new Path(conf.get("filePath")); //location of ignoreWords
+            FileSystem fs = FileSystem.get(new Configuration());
 
-        Path pt = new Path(conf.get("filePath")); //location of ignoreWords
-        FileSystem fs = FileSystem.get(new Configuration());
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(pt)));
-        String line;
-        line = br.readLine();
-        while (line != null) {
-            ignoreWords.add(line.trim().toLowerCase());
+            BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(pt)));
+            String line;
             line = br.readLine();
+            while (line != null) {
+                ignoreWords.add(line.trim().toLowerCase());
+                line = br.readLine();
+            }
         }
     }
 

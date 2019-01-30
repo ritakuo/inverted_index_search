@@ -17,8 +17,12 @@ public class InvertedIndexDriver {
 
         Configuration conf = new Configuration();
 
-        conf.set("filePath", args[2]);
-
+        try {
+            conf.set("filePath", args[2]);
+            System.out.println("ignorewords are supplied");
+        } catch(Exception e) {
+            System.out.println("no ignoreWords supplied");
+        }
         Path inputDirectoryPath = new Path(args[0]);
         Path outputDirectoryPath =  new Path(args[1]);
 

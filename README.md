@@ -58,17 +58,3 @@ s3://<your-bucket>/<your-input-foldere> s3://<your-bucket>/out
 ```
 7. check output on s3 folder
 
-
-## method 2: run on local
-1. Create a EC2 keypair PEM file to used for EMR
-2. Create a S3 bucket 
-3. Upload the jar in this repo to your s3 bucket ( You can make change and compile your own as well)
-4. Upload the input files to the same s3 bucket 
-5. Create a EMR cluster, choose EMR version that uses hadoop version 2.7.3 (to use a different hadoop version, change the pom.xml)
-6. After EMR provision finish, add a step for custom jar
-- for JAR location, point to the jar in the s3 bucket
-- for argument:
-```
-s3://<your-bucket>/<your-input-foldere> s3://<your-bucket>/out s3://<your-bucket>/ignorewords.txt
-```
-7. check output on s3 folder

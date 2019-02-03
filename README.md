@@ -45,7 +45,10 @@ these are the list of words that you choose to ignore as search result. you can 
 3. Upload the jar in this repo to your s3 bucket ( You can make change and compile your own as well)
 4. Upload the input files to the same s3 bucket 
 5. Create a EMR cluster, choose EMR version that uses hadoop version 2.7.3 (to use a different hadoop version, change the pom.xml)
-6. After EMR provision finish, add a step for custom jar
+6. After EMR provision finish, add step for EMR to read file from s3 
+![] (https://aws.amazon.com/premiumsupport/knowledge-center/copy-s3-hdfs-emr/)
+
+7. add a step for custom jar
 - for JAR location, point to the jar in the s3 bucket
 - for argument:
 us the following if wish to supply ignorewords:
@@ -56,5 +59,5 @@ us the following if not:
 ```
 s3://<your-bucket>/<your-input-foldere> s3://<your-bucket>/out 
 ```
-7. check output on s3 folder
+8. check output on s3 folder
 

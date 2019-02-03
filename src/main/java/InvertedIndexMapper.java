@@ -21,10 +21,14 @@ public class InvertedIndexMapper extends Mapper<LongWritable, Text, Text, Text> 
     protected void setup(Context context) throws IOException {
         Configuration conf = context.getConfiguration();
         if(conf.get("filePath") != null){
+            //if running on local, use:
             Path pt = new Path(conf.get("filePath")); //location of ignoreWords
+            //if running in HDFS i.e. EMR
+//            String filePath = conf.get("filePath");
+//            Path pt=new Path("hdfs:" + filePath);
             FileSystem fs = FileSystem.get(new Configuration());
-
             BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(pt)));
+
             String line;
             line = br.readLine();
             while (line != null) {

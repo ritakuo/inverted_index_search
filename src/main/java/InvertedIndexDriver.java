@@ -5,6 +5,7 @@ import org.apache.hadoop.io.Text;
 
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 
@@ -36,10 +37,10 @@ public class InvertedIndexDriver {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
 
-        FileSystem fs = FileSystem.get(conf);
-        if (fs.exists(outputDirectoryPath)){
-            fs.delete(outputDirectoryPath, true);
-        }
+//        FileSystem fs = FileSystem.get(conf);
+//        if (fs.exists(outputDirectoryPath)){
+//            fs.delete(outputDirectoryPath, true);
+//        }
 
         TextInputFormat.setInputPaths(job, inputDirectoryPath);
         TextOutputFormat.setOutputPath(job, outputDirectoryPath);
